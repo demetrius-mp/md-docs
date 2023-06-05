@@ -1,9 +1,8 @@
 <script lang="ts">
 	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
 
-	import IconFileDocument from '~icons/mdi/FileDocument';
-
 	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import DocHeader from '$lib/components/DocHeader.svelte';
 	import DOMPurify from 'dompurify';
 	import { marked } from 'marked';
 	import { gfmHeadingId } from 'marked-gfm-heading-id';
@@ -30,28 +29,15 @@
 	</title>
 </svelte:head>
 
-<div class="p-2 flex flex-col gap-1">
-	<div class="flex items-center gap-2">
-		<div class="flex items-center gap-1 min-w-0 flex-1">
-			<IconFileDocument class="text-3xl" />
-
-			<input
-				disabled
-				type="text"
-				style="font-size: 32px"
-				class="invisible-input hover:!outline-none"
-				value={data.doc.title}
-			/>
-		</div>
-	</div>
-
-	<input
-		type="text"
-		style="font-size: 20px"
-		disabled
-		class="invisible-input w-full hover:!outline-none"
-		value={data.doc.description}
-	/>
-</div>
+<DocHeader
+	docData={{
+		title: data.doc.title,
+		description: data.doc.description,
+		content: data.doc.content,
+	}}
+	docId={data.doc.id}
+	docUuid={data.doc.uuid}
+	mode="show"
+/>
 
 <MarkdownContent style="min-height: calc(100vh - 149px);" class="p-6" content={markdownContent} />
