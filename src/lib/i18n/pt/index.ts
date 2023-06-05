@@ -28,6 +28,8 @@ const pt = {
 	emptyDocs: 'Você ainda não tem nenhum documento',
 	noDocsFound: 'Nenhum documento encontrado',
 	clickHereToCreateADoc: 'Clique aqui para criar um documento',
+	docDefaultTitle: 'Novo documento',
+	docDefaultDescription: 'Descrição do documento',
 } satisfies BaseTranslation;
 
 export default pt;

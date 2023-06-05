@@ -103,6 +103,14 @@ type RootTranslation = {
 	 * C​l​i​q​u​e​ ​a​q​u​i​ ​p​a​r​a​ ​c​r​i​a​r​ ​u​m​ ​d​o​c​u​m​e​n​t​o
 	 */
 	clickHereToCreateADoc: string
+	/**
+	 * N​o​v​o​ ​d​o​c​u​m​e​n​t​o
+	 */
+	docDefaultTitle: string
+	/**
+	 * D​e​s​c​r​i​ç​ã​o​ ​d​o​ ​d​o​c​u​m​e​n​t​o
+	 */
+	docDefaultDescription: string
 }
 
 export type TranslationFunctions = {
@@ -196,6 +204,14 @@ export type TranslationFunctions = {
 	 * Clique aqui para criar um documento
 	 */
 	clickHereToCreateADoc: () => LocalizedString
+	/**
+	 * Novo documento
+	 */
+	docDefaultTitle: () => LocalizedString
+	/**
+	 * Descrição do documento
+	 */
+	docDefaultDescription: () => LocalizedString
 }
 
 export type Formatters = {}
