@@ -7,6 +7,7 @@
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
+	import { scale } from 'svelte/transition';
 	import IconBookOpen from '~icons/mdi/BookOpen';
 	import IconContentSave from '~icons/mdi/ContentSave';
 	import IconContentSaveAlert from '~icons/mdi/ContentSaveAlert';
@@ -182,6 +183,7 @@
 
 {#if docState !== 'base'}
 	<button
+		transition:scale={{ duration: 150 }}
 		on:click={save}
 		title="Save changes"
 		disabled={docState == 'saving'}
