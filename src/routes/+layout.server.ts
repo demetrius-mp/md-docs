@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-import { detect_locale_from_cookie, LANG_PARAM } from '$lib/i18n.helpers';
+import { detectLocaleFromCookie, LANG_PARAM } from '$lib/i18n.helpers';
 
 export async function load(event) {
 	const newLocale = event.url.searchParams.get(LANG_PARAM);
@@ -18,7 +18,7 @@ export async function load(event) {
 		throw redirect(303, event.url.toString());
 	}
 
-	const locale = detect_locale_from_cookie(event.cookies.get(LANG_PARAM));
+	const locale = detectLocaleFromCookie(event.cookies.get(LANG_PARAM));
 
 	return {
 		currentUser: event.locals.currentUser,

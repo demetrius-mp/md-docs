@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-import { get_server_locale_store_from_cookie, LANG_PARAM } from '$lib/i18n.helpers';
+import { getServerLocaleStoreFromCookie, LANG_PARAM } from '$lib/i18n.helpers';
 import { db } from '$lib/server/db';
 
 export const actions = {
@@ -11,7 +11,7 @@ export const actions = {
 			throw redirect(302, '/sign-in');
 		}
 
-		const $LL = get_server_locale_store_from_cookie(event.cookies.get(LANG_PARAM));
+		const $LL = getServerLocaleStoreFromCookie(event.cookies.get(LANG_PARAM));
 
 		const doc = await db.doc.create({
 			data: {

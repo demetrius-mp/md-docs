@@ -6,20 +6,20 @@ import { detectLocale } from '$lib/i18n/i18n-util';
 
 export const LANG_PARAM = 'lang';
 
-export function detect_locale_from_cookie(cookie: string | undefined) {
+export function detectLocaleFromCookie(cookie: string | undefined) {
 	const locale = detectLocale(() => [cookie ?? '']);
 
 	return locale;
 }
 
-export function get_server_locale_store(locale: Locales) {
+export function getServerLocaleStore(locale: Locales) {
 	setLocale(locale);
 
 	return get(LL);
 }
 
-export function get_server_locale_store_from_cookie(cookie: string | undefined) {
-	const locale = detect_locale_from_cookie(cookie);
+export function getServerLocaleStoreFromCookie(cookie: string | undefined) {
+	const locale = detectLocaleFromCookie(cookie);
 
-	return get_server_locale_store(locale);
+	return getServerLocaleStore(locale);
 }
