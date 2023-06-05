@@ -20,7 +20,7 @@
 </script>
 
 <Splitpanes>
-	<Pane snapSize={19}>
+	<Pane size={25} snapSize={19}>
 		<div class="p-2 flex flex-col gap-3 fill-height">
 			<Input placeholder={$LL.form.search()} bind:value={filter} name="filter" />
 			<form action="/app/docs/new" method="post" use:enhance>
