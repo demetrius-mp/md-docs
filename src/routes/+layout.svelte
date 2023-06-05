@@ -3,6 +3,7 @@
 	import { navigating } from '$app/stores';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import Dropdown from '$lib/components/Dropdown.svelte';
+	import Notifications from '$lib/components/Notifications/Notifications.svelte';
 	import PageLoadingIndicator from '$lib/components/PageLoadingIndicator.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
 	import IconLogoutVariant from '~icons/mdi/LogoutVariant';
@@ -12,6 +13,8 @@
 </script>
 
 <PageLoadingIndicator isLoading={Boolean($navigating)} />
+
+<Notifications />
 
 <form id="sign-out" class="invisible" use:enhance action="/sign-out" method="post" />
 

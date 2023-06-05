@@ -4,7 +4,7 @@
 		open: () => void;
 	};
 
-	export function create_dialog_dontroller(): DialogController {
+	export function createDialogController(): DialogController {
 		return {
 			close: () => {
 				return;

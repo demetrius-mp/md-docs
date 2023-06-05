@@ -27,7 +27,8 @@ model User {
 }
 
 model Doc {
-  id Int @id @default(autoincrement()) @map("id")
+  id   Int    @id @default(autoincrement()) @map("id")
+  uuid String @unique @default(uuid()) @map("uuid")
 
   title       String @map("title")
   description String @map("description")

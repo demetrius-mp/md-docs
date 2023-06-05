@@ -3,12 +3,17 @@
 	import { writable } from 'svelte/store';
 
 	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
+	import Dialog, { createDialogController } from '$lib/components/Dialog.svelte';
 	import Dropdown from '$lib/components/Dropdown.svelte';
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
 	import { scale } from 'svelte/transition';
 	import IconBookOpen from '~icons/mdi/BookOpen';
+	import IconClipboardCheckOutline from '~icons/mdi/ClipboardCheckOutline';
+	import IconClipboardOutline from '~icons/mdi/ClipboardOutline';
+	import IconClose from '~icons/mdi/Close';
 	import IconContentSave from '~icons/mdi/ContentSave';
 	import IconContentSaveAlert from '~icons/mdi/ContentSaveAlert';
 	import IconContentSaveCheck from '~icons/mdi/ContentSaveCheck';
@@ -16,6 +21,7 @@
 	import IconEye from '~icons/mdi/Eye';
 	import IconFileDocument from '~icons/mdi/FileDocument';
 	import IconPencil from '~icons/mdi/Pencil';
+	import IconShareVariant from '~icons/mdi/ShareVariant';
 	import IconTrash from '~icons/mdi/Trash';
 
 	export let data;
@@ -77,6 +83,27 @@
 			docState = 'error';
 		}
 	}
+
+	const dialogController = createDialogController();
+
+	$: {
+		if (dialogController.open) {
+			dialogController.open();
+		}
+	}
+
+	$: shareDocUrl = $page.url.origin + '/shared/' + data.doc.uuid;
+
+	let copiedToClipboard = false;
+	function copyToClipboard() {
+		copiedToClipboard = true;
+
+		setTimeout(() => {
+			copiedToClipboard = false;
+		}, 2000);
+
+		navigator.clipboard.writeText(shareDocUrl);
+	}
 </script>
 
 <svelte:head>
@@ -108,7 +135,6 @@
 			<ul
 				slot="menuItems"
 				let:itemAction
-				let:close
 				class="gap-1 z-50 menu menu-sm bg-base-300 w-56 p-2 rounded-box"
 			>
 				<li class="menu-title">Layout</li>
@@ -153,8 +179,15 @@
 
 				<li class="menu-title">Actions</li>
 
+				<li>
+					<button on:click={dialogController.open} use:itemAction class="flex gap-2">
+						<IconShareVariant class="text-xl" />
+						Share
+					</button>
+				</li>
+
 				<li class="text-error hover:text-error">
-					<button on:click={close} form="delete-doc" class="flex gap-2" type="submit">
+					<button use:itemAction form="delete-doc" class="flex gap-2" type="submit">
 						<IconTrash class="text-xl" />
 						Delete
 					</button>
@@ -203,6 +236,41 @@
 		{/if}
 	</button>
 {/if}
+
+<Dialog
+	bind:close={dialogController.close}
+	bind:open={dialogController.open}
+	label="Share document"
+>
+	<div class="flex justify-between items-center">
+		<h1 class="text-2xl">Share document</h1>
+
+		<button type="button" class="btn btn-ghost btn-sm" on:click={dialogController.close}>
+			<IconClose class="text-xl" />
+		</button>
+	</div>
+
+	<div class="divider my-1" />
+
+	<div class="flex flex-col gap-2">
+		<p>Anyone with this link can <strong>only see</strong> your document!</p>
+
+		<div class="join">
+			<input
+				disabled
+				class="input !border-gray-600 !bg-base-100 join-item flex-1"
+				value={shareDocUrl}
+			/>
+			<button on:click={copyToClipboard} class="btn join-item btn-accent btn-outline">
+				{#if copiedToClipboard}
+					<IconClipboardCheckOutline />
+				{:else}
+					<IconClipboardOutline />
+				{/if}
+			</button>
+		</div>
+	</div>
+</Dialog>
 
 <style lang="postcss">
 	.invisible-input {
