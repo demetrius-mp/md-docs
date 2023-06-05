@@ -30,6 +30,21 @@ const pt = {
 	clickHereToCreateADoc: 'Clique aqui para criar um documento',
 	docDefaultTitle: 'Novo documento',
 	docDefaultDescription: 'Descrição do documento',
+	docLayout: {
+		layout: 'Layout',
+		edit: 'Edição',
+		hybrid: 'Híbrido',
+		render: 'Renderização',
+	},
+	docActions: {
+		actions: 'Ações',
+		share: 'Compartilhar',
+		delete: 'Excluir',
+	},
+	docShare: {
+		shareDocument: 'Compartilhar documento',
+		onlyViewLink: 'Link de <>visualização<>:',
+	},
 } satisfies BaseTranslation;
 
 export default pt;

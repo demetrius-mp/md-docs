@@ -111,6 +111,48 @@ type RootTranslation = {
 	 * D​e​s​c​r​i​ç​ã​o​ ​d​o​ ​d​o​c​u​m​e​n​t​o
 	 */
 	docDefaultDescription: string
+	docLayout: {
+		/**
+		 * L​a​y​o​u​t
+		 */
+		layout: string
+		/**
+		 * E​d​i​ç​ã​o
+		 */
+		edit: string
+		/**
+		 * H​í​b​r​i​d​o
+		 */
+		hybrid: string
+		/**
+		 * R​e​n​d​e​r​i​z​a​ç​ã​o
+		 */
+		render: string
+	}
+	docActions: {
+		/**
+		 * A​ç​õ​e​s
+		 */
+		actions: string
+		/**
+		 * C​o​m​p​a​r​t​i​l​h​a​r
+		 */
+		share: string
+		/**
+		 * E​x​c​l​u​i​r
+		 */
+		'delete': string
+	}
+	docShare: {
+		/**
+		 * C​o​m​p​a​r​t​i​l​h​a​r​ ​d​o​c​u​m​e​n​t​o
+		 */
+		shareDocument: string
+		/**
+		 * L​i​n​k​ ​d​e​ ​<​>​v​i​s​u​a​l​i​z​a​ç​ã​o​<​>​:
+		 */
+		onlyViewLink: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -212,6 +254,48 @@ export type TranslationFunctions = {
 	 * Descrição do documento
 	 */
 	docDefaultDescription: () => LocalizedString
+	docLayout: {
+		/**
+		 * Layout
+		 */
+		layout: () => LocalizedString
+		/**
+		 * Edição
+		 */
+		edit: () => LocalizedString
+		/**
+		 * Híbrido
+		 */
+		hybrid: () => LocalizedString
+		/**
+		 * Renderização
+		 */
+		render: () => LocalizedString
+	}
+	docActions: {
+		/**
+		 * Ações
+		 */
+		actions: () => LocalizedString
+		/**
+		 * Compartilhar
+		 */
+		share: () => LocalizedString
+		/**
+		 * Excluir
+		 */
+		'delete': () => LocalizedString
+	}
+	docShare: {
+		/**
+		 * Compartilhar documento
+		 */
+		shareDocument: () => LocalizedString
+		/**
+		 * Link de <>visualização<>:
+		 */
+		onlyViewLink: () => LocalizedString
+	}
 }
 
 export type Formatters = {}

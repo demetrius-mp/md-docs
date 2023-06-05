@@ -6,6 +6,8 @@
 	import { page } from '$app/stores';
 	import Dialog, { createDialogController } from '$lib/components/Dialog.svelte';
 	import Dropdown from '$lib/components/Dropdown.svelte';
+	import WrapTranslation from '$lib/components/WrapTranslation.svelte';
+	import LL from '$lib/i18n/i18n-svelte.js';
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
@@ -86,12 +88,6 @@
 
 	const dialogController = createDialogController();
 
-	$: {
-		if (dialogController.open) {
-			dialogController.open();
-		}
-	}
-
 	$: shareDocUrl = $page.url.origin + '/shared/' + data.doc.uuid;
 
 	let copiedToClipboard = false;
@@ -100,7 +96,7 @@
 
 		setTimeout(() => {
 			copiedToClipboard = false;
-		}, 2000);
+		}, 5000);
 
 		navigator.clipboard.writeText(shareDocUrl);
 	}
@@ -137,7 +133,7 @@
 				let:itemAction
 				class="gap-1 z-50 menu menu-sm bg-base-300 w-56 p-2 rounded-box"
 			>
-				<li class="menu-title">Layout</li>
+				<li class="menu-title">{$LL.docLayout.layout()}</li>
 
 				<li>
 					<button
@@ -147,7 +143,7 @@
 						class="flex gap-2"
 					>
 						<IconPencil class="text-xl" />
-						Edit
+						{$LL.docLayout.edit()}
 					</button>
 				</li>
 
@@ -159,7 +155,7 @@
 						class="flex gap-2"
 					>
 						<IconBookOpen class="text-xl" />
-						Hybrid
+						{$LL.docLayout.hybrid()}
 					</button>
 				</li>
 
@@ -171,25 +167,27 @@
 						class="flex gap-2"
 					>
 						<IconEye class="text-xl" />
-						Render
+						{$LL.docLayout.render()}
 					</button>
 				</li>
 
 				<div class="divider -mb-2 -mt-1 px-1" />
 
-				<li class="menu-title">Actions</li>
+				<li class="menu-title">
+					{$LL.docActions.actions()}
+				</li>
 
 				<li>
 					<button on:click={dialogController.open} use:itemAction class="flex gap-2">
 						<IconShareVariant class="text-xl" />
-						Share
+						{$LL.docActions.share()}
 					</button>
 				</li>
 
 				<li class="text-error hover:text-error">
 					<button use:itemAction form="delete-doc" class="flex gap-2" type="submit">
 						<IconTrash class="text-xl" />
-						Delete
+						{$LL.docActions.delete()}
 					</button>
 				</li>
 			</ul>
@@ -240,10 +238,12 @@
 <Dialog
 	bind:close={dialogController.close}
 	bind:open={dialogController.open}
-	label="Share document"
+	label={$LL.docShare.shareDocument()}
 >
 	<div class="flex justify-between items-center">
-		<h1 class="text-2xl">Share document</h1>
+		<h1 class="text-2xl">
+			{$LL.docShare.shareDocument()}
+		</h1>
 
 		<button type="button" class="btn btn-ghost btn-sm" on:click={dialogController.close}>
 			<IconClose class="text-xl" />
@@ -253,7 +253,14 @@
 	<div class="divider my-1" />
 
 	<div class="flex flex-col gap-2">
-		<p>Anyone with this link can <strong>only see</strong> your document!</p>
+		<p>
+			<!-- Anyone with this link can <strong>only see</strong> your document! -->
+			<WrapTranslation message={$LL.docShare.onlyViewLink()} let:infix>
+				<strong>
+					{infix}
+				</strong>
+			</WrapTranslation>
+		</p>
 
 		<div class="join">
 			<input
