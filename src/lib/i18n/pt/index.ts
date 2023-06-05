@@ -1,6 +1,8 @@
 import type { BaseTranslation } from '../i18n-types';
 
 const pt = {
+	signUp: 'Cadastrar',
+	signIn: 'Entrar',
 	form: {
 		submit: 'Enviar',
 	},

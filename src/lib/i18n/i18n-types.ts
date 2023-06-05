@@ -13,6 +13,14 @@ export type Translation = RootTranslation
 export type Translations = RootTranslation
 
 type RootTranslation = {
+	/**
+	 * C​a​d​a​s​t​r​a​r
+	 */
+	signUp: string
+	/**
+	 * E​n​t​r​a​r
+	 */
+	signIn: string
 	form: {
 		/**
 		 * E​n​v​i​a​r
@@ -42,6 +50,14 @@ type RootTranslation = {
 }
 
 export type TranslationFunctions = {
+	/**
+	 * Cadastrar
+	 */
+	signUp: () => LocalizedString
+	/**
+	 * Entrar
+	 */
+	signIn: () => LocalizedString
 	form: {
 		/**
 		 * Enviar
