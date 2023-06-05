@@ -20,6 +20,7 @@
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/bcryptjs": "^2.4.2",
 		"@types/jsonwebtoken": "^9.0.2",
+		"@types/lodash": "^4.14.195",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
@@ -48,7 +49,9 @@
 	"dependencies": {
 		"@prisma/client": "^4.15.0",
 		"bcryptjs": "^2.4.3",
+		"ink-mde": "^0.25.0-rc.0",
 		"jsonwebtoken": "^9.0.0",
+		"lodash-es": "^4.17.21",
 		"svelte-headlessui": "^0.0.16",
 		"svelte-splitpanes": "^0.7.14",
 		"svelte-transition": "^0.0.7",
