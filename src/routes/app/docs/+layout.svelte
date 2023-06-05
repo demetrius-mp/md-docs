@@ -41,8 +41,15 @@
 				<ul class="overflow-y-auto flex flex-col gap-2">
 					{#each filteredDocs as doc}
 						<li>
-							<a
+							<!-- <a
 								class="block bg-base-200 rounded-box p-3 pl-4 doc-link"
+								class:doc-link-active={$currentDocStore?.id === doc.id}
+								href="/app/docs/{doc.id}"
+							>
+								{doc.title}
+							</a> -->
+							<a
+								class="doc-link"
 								class:doc-link-active={$currentDocStore?.id === doc.id}
 								href="/app/docs/{doc.id}"
 							>
@@ -68,13 +75,11 @@
 	}
 
 	.doc-link {
-		@media (hover: hover) {
-			&:hover {
-				@apply outline-none bg-base-content/10 cursor-pointer;
-			}
-		}
+		@apply block bg-base-200 rounded-box p-3 pl-4 transition duration-200 ease-in-out;
+	}
 
-		@apply transition duration-200 ease-in-out;
+	.doc-link:hover {
+		@apply outline-none bg-base-content/10 cursor-pointer;
 	}
 
 	.doc-link-active {
