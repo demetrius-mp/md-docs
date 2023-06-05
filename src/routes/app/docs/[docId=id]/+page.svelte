@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import { writable } from 'svelte/store';
 
 	import DocHeader from '$lib/components/DocHeader.svelte';
 	import { currentDocStore } from '$lib/stores/currentDocStore.js';
@@ -21,7 +20,7 @@
 
 	let editor: Instance;
 
-	const docLayoutStore = writable<'edit' | 'render' | 'hybrid'>('edit');
+	let docLayout: 'edit' | 'render' | 'hybrid' = 'edit';
 	let docState: 'base' | 'edited' | 'saving' | 'saved' | 'error' = 'base';
 
 	function resetForm(data: typeof form) {
@@ -85,7 +84,7 @@
 	bind:docData={form}
 	docId={data.doc.id}
 	docUuid={data.doc.uuid}
-	bind:docLayout={$docLayoutStore}
+	bind:docLayout
 	mode="edit"
 />
 
