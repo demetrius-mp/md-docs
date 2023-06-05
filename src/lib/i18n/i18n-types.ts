@@ -46,6 +46,10 @@ type RootTranslation = {
 		 * C​o​n​f​i​r​m​a​r​ ​s​e​n​h​a
 		 */
 		confirmPassword: string
+		/**
+		 * B​u​s​c​a​r
+		 */
+		search: string
 	}
 	notification: {
 		kind: {
@@ -83,6 +87,22 @@ type RootTranslation = {
 	 * G​e​r​e​n​c​i​e​ ​s​u​a​s​ ​c​o​n​f​i​g​u​r​a​ç​õ​e​s
 	 */
 	manageSettings: string
+	/**
+	 * N​o​v​o​ ​d​o​c​u​m​e​n​t​o
+	 */
+	newDoc: string
+	/**
+	 * V​o​c​ê​ ​a​i​n​d​a​ ​n​ã​o​ ​t​e​m​ ​n​e​n​h​u​m​ ​d​o​c​u​m​e​n​t​o
+	 */
+	emptyDocs: string
+	/**
+	 * N​e​n​h​u​m​ ​d​o​c​u​m​e​n​t​o​ ​e​n​c​o​n​t​r​a​d​o
+	 */
+	noDocsFound: string
+	/**
+	 * C​l​i​q​u​e​ ​a​q​u​i​ ​p​a​r​a​ ​c​r​i​a​r​ ​u​m​ ​d​o​c​u​m​e​n​t​o
+	 */
+	clickHereToCreateADoc: string
 }
 
 export type TranslationFunctions = {
@@ -119,6 +139,10 @@ export type TranslationFunctions = {
 		 * Confirmar senha
 		 */
 		confirmPassword: () => LocalizedString
+		/**
+		 * Buscar
+		 */
+		search: () => LocalizedString
 	}
 	notification: {
 		kind: {
@@ -156,6 +180,22 @@ export type TranslationFunctions = {
 	 * Gerencie suas configurações
 	 */
 	manageSettings: () => LocalizedString
+	/**
+	 * Novo documento
+	 */
+	newDoc: () => LocalizedString
+	/**
+	 * Você ainda não tem nenhum documento
+	 */
+	emptyDocs: () => LocalizedString
+	/**
+	 * Nenhum documento encontrado
+	 */
+	noDocsFound: () => LocalizedString
+	/**
+	 * Clique aqui para criar um documento
+	 */
+	clickHereToCreateADoc: () => LocalizedString
 }
 
 export type Formatters = {}
