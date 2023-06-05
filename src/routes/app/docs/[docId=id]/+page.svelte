@@ -278,23 +278,3 @@
 		</div>
 	</div>
 </Dialog>
-
-<style lang="postcss">
-	.invisible-input {
-		border: none;
-		outline: none;
-		min-width: 0;
-		flex: 1;
-		padding: 0px 5px;
-		@apply leading-3 whitespace-normal bg-base-100 text-base;
-	}
-
-	.invisible-input:hover:not(:focus) {
-		outline: solid;
-		@apply outline-1 outline-gray-500 rounded;
-	}
-
-	.invisible-input:focus {
-		@apply rounded;
-	}
-</style>
