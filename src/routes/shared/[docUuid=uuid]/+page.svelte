@@ -3,6 +3,7 @@
 
 	import IconFileDocument from '~icons/mdi/FileDocument';
 
+	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import DOMPurify from 'dompurify';
 	import { marked } from 'marked';
 	import { gfmHeadingId } from 'marked-gfm-heading-id';
@@ -22,6 +23,12 @@
 		);
 	});
 </script>
+
+<svelte:head>
+	<title>
+		{PUBLIC_APP_NAME} - "{data.doc.title}"
+	</title>
+</svelte:head>
 
 <div class="p-2 flex flex-col gap-1">
 	<div class="flex items-center gap-2">
@@ -47,4 +54,4 @@
 	/>
 </div>
 
-<MarkdownContent style="height: calc(100vh - 149px);" class="p-3" content={markdownContent} />
+<MarkdownContent style="min-height: calc(100vh - 149px);" class="p-6" content={markdownContent} />
