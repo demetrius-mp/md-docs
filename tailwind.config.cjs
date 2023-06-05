@@ -11,6 +11,10 @@ const config = {
 	},
 
 	plugins: [forms, typography, daisyui],
+
+	daisyui: {
+		themes: ['dark'],
+	},
 };
 
 module.exports = config;
