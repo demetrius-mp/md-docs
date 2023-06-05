@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/Form/Input.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
+	import { currentDocStore } from '$lib/stores/currentDocStore.js';
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import IconFileDocumentPlus from '~icons/mdi/FileDocumentPlus';
 
@@ -37,17 +38,19 @@
 					{$LL.noDocsFound()}
 				</div>
 			{:else}
-				<div class="overflow-y-auto">
-					<ul class="menu bg-base-200 rounded-box gap-1 p-2 overflow-hidden">
-						{#each filteredDocs as doc}
-							<li>
-								<a href="/app/docs/{doc.id}">
-									{doc.title}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</div>
+				<ul class="overflow-y-auto flex flex-col gap-2">
+					{#each filteredDocs as doc}
+						<li>
+							<a
+								class="block bg-base-200 rounded-box p-3 pl-4 doc-link"
+								class:doc-link-active={$currentDocStore?.id === doc.id}
+								href="/app/docs/{doc.id}"
+							>
+								{doc.title}
+							</a>
+						</li>
+					{/each}
+				</ul>
 			{/if}
 		</div>
 	</Pane>
@@ -62,5 +65,19 @@
 <style>
 	.fill-height {
 		height: calc(100vh - 66px);
+	}
+
+	.doc-link {
+		@media (hover: hover) {
+			&:hover {
+				@apply outline-none bg-base-content/10 cursor-pointer;
+			}
+		}
+
+		@apply transition duration-200 ease-in-out;
+	}
+
+	.doc-link-active {
+		@apply bg-neutral text-neutral-content;
 	}
 </style>
