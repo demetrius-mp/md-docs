@@ -4,6 +4,14 @@ const pt = {
 	form: {
 		submit: 'Enviar',
 	},
+	notification: {
+		kind: {
+			info: 'Info',
+			success: 'Sucesso',
+			warning: 'Aviso',
+			error: 'Erro',
+		},
+	},
 } satisfies BaseTranslation;
 
 export default pt;

@@ -19,6 +19,26 @@ type RootTranslation = {
 		 */
 		submit: string
 	}
+	notification: {
+		kind: {
+			/**
+			 * I​n​f​o
+			 */
+			info: string
+			/**
+			 * S​u​c​e​s​s​o
+			 */
+			success: string
+			/**
+			 * A​v​i​s​o
+			 */
+			warning: string
+			/**
+			 * E​r​r​o
+			 */
+			error: string
+		}
+	}
 }
 
 export type TranslationFunctions = {
@@ -27,6 +47,26 @@ export type TranslationFunctions = {
 		 * Enviar
 		 */
 		submit: () => LocalizedString
+	}
+	notification: {
+		kind: {
+			/**
+			 * Info
+			 */
+			info: () => LocalizedString
+			/**
+			 * Sucesso
+			 */
+			success: () => LocalizedString
+			/**
+			 * Aviso
+			 */
+			warning: () => LocalizedString
+			/**
+			 * Erro
+			 */
+			error: () => LocalizedString
+		}
 	}
 }
 
