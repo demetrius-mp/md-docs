@@ -149,7 +149,7 @@
 					</button>
 				</li>
 
-				<div class="divider -my-2 px-1" />
+				<div class="divider -mb-2 -mt-1 px-1" />
 
 				<li class="menu-title">Actions</li>
 
