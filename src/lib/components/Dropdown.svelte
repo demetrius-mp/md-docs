@@ -39,7 +39,13 @@
 		leaveTo="transform opacity-0 scale-95"
 	>
 		<div use:dropdown.items class="z-10 absolute right-0 focus:outline-none origin-top-right">
-			<slot name="menuItems" activeItem={$dropdown.active} itemAction={dropdown.item} />
+			<slot
+				name="menuItems"
+				activeItem={$dropdown.active}
+				itemAction={dropdown.item}
+				{open}
+				{close}
+			/>
 		</div>
 	</Transition>
 </div>

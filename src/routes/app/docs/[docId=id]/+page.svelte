@@ -108,6 +108,7 @@
 			<ul
 				slot="menuItems"
 				let:itemAction
+				let:close
 				class="gap-1 z-50 menu menu-sm bg-base-300 w-56 p-2 rounded-box"
 			>
 				<li class="menu-title">Layout</li>
@@ -153,7 +154,7 @@
 				<li class="menu-title">Actions</li>
 
 				<li class="text-error hover:text-error">
-					<button form="delete-doc" class="flex gap-2" type="submit">
+					<button on:click={close} form="delete-doc" class="flex gap-2" type="submit">
 						<IconTrash class="text-xl" />
 						Delete
 					</button>
