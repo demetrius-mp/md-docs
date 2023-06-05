@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import LL from '$lib/i18n/i18n-svelte';
 </script>
@@ -13,7 +14,9 @@
 	<h2 class="text-2xl font-semibold">
 		{$LL.emptyDocs()}
 	</h2>
-	<button class="btn btn-primary">
-		{$LL.clickHereToCreateADoc()}
-	</button>
+	<form action="/app/docs/new" method="post" use:enhance>
+		<button class="btn btn-primary" type="submit">
+			{$LL.clickHereToCreateADoc()}
+		</button>
+	</form>
 </div>
