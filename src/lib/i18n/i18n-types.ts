@@ -67,6 +67,22 @@ type RootTranslation = {
 			error: string
 		}
 	}
+	/**
+	 * D​o​c​u​m​e​n​t​o​s
+	 */
+	docs: string
+	/**
+	 * G​e​r​e​n​c​i​e​ ​s​e​u​s​ ​d​o​c​u​m​e​n​t​o​s
+	 */
+	manageDocs: string
+	/**
+	 * C​o​n​f​i​g​u​r​a​ç​õ​e​s
+	 */
+	settings: string
+	/**
+	 * G​e​r​e​n​c​i​e​ ​s​u​a​s​ ​c​o​n​f​i​g​u​r​a​ç​õ​e​s
+	 */
+	manageSettings: string
 }
 
 export type TranslationFunctions = {
@@ -124,6 +140,22 @@ export type TranslationFunctions = {
 			error: () => LocalizedString
 		}
 	}
+	/**
+	 * Documentos
+	 */
+	docs: () => LocalizedString
+	/**
+	 * Gerencie seus documentos
+	 */
+	manageDocs: () => LocalizedString
+	/**
+	 * Configurações
+	 */
+	settings: () => LocalizedString
+	/**
+	 * Gerencie suas configurações
+	 */
+	manageSettings: () => LocalizedString
 }
 
 export type Formatters = {}

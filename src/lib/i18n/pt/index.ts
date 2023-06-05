@@ -19,6 +19,10 @@ const pt = {
 			error: 'Erro',
 		},
 	},
+	docs: 'Documentos',
+	manageDocs: 'Gerencie seus documentos',
+	settings: 'Configurações',
+	manageSettings: 'Gerencie suas configurações',
 } satisfies BaseTranslation;
 
 export default pt;
