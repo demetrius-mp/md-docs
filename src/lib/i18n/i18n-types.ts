@@ -21,11 +21,31 @@ type RootTranslation = {
 	 * E​n​t​r​a​r
 	 */
 	signIn: string
+	/**
+	 * S​a​i​r
+	 */
+	signOut: string
 	form: {
 		/**
 		 * E​n​v​i​a​r
 		 */
 		submit: string
+		/**
+		 * N​o​m​e
+		 */
+		name: string
+		/**
+		 * E​m​a​i​l
+		 */
+		email: string
+		/**
+		 * S​e​n​h​a
+		 */
+		password: string
+		/**
+		 * C​o​n​f​i​r​m​a​r​ ​s​e​n​h​a
+		 */
+		confirmPassword: string
 	}
 	notification: {
 		kind: {
@@ -58,11 +78,31 @@ export type TranslationFunctions = {
 	 * Entrar
 	 */
 	signIn: () => LocalizedString
+	/**
+	 * Sair
+	 */
+	signOut: () => LocalizedString
 	form: {
 		/**
 		 * Enviar
 		 */
 		submit: () => LocalizedString
+		/**
+		 * Nome
+		 */
+		name: () => LocalizedString
+		/**
+		 * Email
+		 */
+		email: () => LocalizedString
+		/**
+		 * Senha
+		 */
+		password: () => LocalizedString
+		/**
+		 * Confirmar senha
+		 */
+		confirmPassword: () => LocalizedString
 	}
 	notification: {
 		kind: {

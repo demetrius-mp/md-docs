@@ -21,6 +21,7 @@ export async function load(event) {
 	const locale = detect_locale_from_cookie(event.cookies.get(LANG_PARAM));
 
 	return {
+		currentUser: event.locals.currentUser,
 		locale,
 	};
 }

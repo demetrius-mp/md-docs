@@ -47,8 +47,12 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^4.15.0",
+		"bcryptjs": "^2.4.3",
+		"jsonwebtoken": "^9.0.0",
 		"svelte-headlessui": "^0.0.16",
 		"svelte-transition": "^0.0.7",
-		"typesafe-i18n": "^5.24.3"
+		"sveltekit-superforms": "^1.0.0-rc.2",
+		"typesafe-i18n": "^5.24.3",
+		"zod": "^3.21.4"
 	}
 }

@@ -11,7 +11,9 @@ declare global {
 		// interface Error {}
 		// interface Platform {}
 		// interface PageData {}
-		// interface Locals {}
+		interface Locals {
+			currentUser?: Omit<import('@prisma/client').User, 'password'>;
+		}
 	}
 }
 

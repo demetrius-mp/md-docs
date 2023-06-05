@@ -11,7 +11,7 @@
 			},
 			open: () => {
 				return;
-			}
+			},
 		};
 	}
 </script>
