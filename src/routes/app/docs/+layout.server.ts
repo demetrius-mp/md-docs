@@ -12,6 +12,9 @@ export async function load(event) {
 			title: true,
 			description: true,
 		},
+		orderBy: {
+			id: 'desc',
+		},
 	});
 
 	return {

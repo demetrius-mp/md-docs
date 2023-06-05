@@ -40,20 +40,14 @@
 			{:else}
 				<ul class="overflow-y-auto flex flex-col gap-2">
 					{#each filteredDocs as doc}
+						{@const isCurrentDoc = $currentDocStore?.id === doc.id}
 						<li>
-							<!-- <a
-								class="block bg-base-200 rounded-box p-3 pl-4 doc-link"
-								class:doc-link-active={$currentDocStore?.id === doc.id}
-								href="/app/docs/{doc.id}"
-							>
-								{doc.title}
-							</a> -->
-							<a
-								class="doc-link"
-								class:doc-link-active={$currentDocStore?.id === doc.id}
-								href="/app/docs/{doc.id}"
-							>
-								{doc.title}
+							<a class="doc-link" class:doc-link-active={isCurrentDoc} href="/app/docs/{doc.id}">
+								{#if $currentDocStore && isCurrentDoc}
+									{$currentDocStore.title}
+								{:else}
+									{doc.title}
+								{/if}
 							</a>
 						</li>
 					{/each}

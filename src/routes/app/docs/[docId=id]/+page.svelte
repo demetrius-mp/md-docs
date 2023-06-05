@@ -2,8 +2,8 @@
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import { writable } from 'svelte/store';
 
-	import { page } from '$app/stores';
 	import DocHeader from '$lib/components/DocHeader.svelte';
+	import { currentDocStore } from '$lib/stores/currentDocStore.js';
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
@@ -67,22 +67,11 @@
 			setTimeout(() => {
 				docState = 'base';
 			}, 2000);
+
+			$currentDocStore = data.doc;
 		} else {
 			docState = 'error';
 		}
-	}
-
-	$: shareDocUrl = $page.url.origin + '/shared/' + data.doc.uuid;
-
-	let copiedToClipboard = false;
-	function copyToClipboard() {
-		copiedToClipboard = true;
-
-		setTimeout(() => {
-			copiedToClipboard = false;
-		}, 5000);
-
-		navigator.clipboard.writeText(shareDocUrl);
 	}
 </script>
 
