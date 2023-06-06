@@ -56,18 +56,10 @@
 		</div>
 	</Pane>
 
-	<Pane>
-		<div class="fill-height">
-			<slot />
-		</div>
-	</Pane>
+	<slot />
 </Splitpanes>
 
 <style>
-	.fill-height {
-		height: calc(100vh - 66px);
-	}
-
 	.doc-link {
 		@apply block bg-base-200 rounded-box p-3 pl-4 transition duration-200 ease-in-out;
 	}

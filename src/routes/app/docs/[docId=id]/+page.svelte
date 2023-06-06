@@ -1,15 +1,23 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 
 	import DocHeader from '$lib/components/DocHeader.svelte';
+	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
 	import { currentDocStore } from '$lib/stores/currentDocStore.js';
+	import DOMPurify from 'dompurify';
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
+	import { marked } from 'marked';
+	import { gfmHeadingId } from 'marked-gfm-heading-id';
+	import { Pane } from 'svelte-splitpanes';
 	import { scale } from 'svelte/transition';
 	import IconContentSave from '~icons/mdi/ContentSave';
 	import IconContentSaveAlert from '~icons/mdi/ContentSaveAlert';
 	import IconContentSaveCheck from '~icons/mdi/ContentSaveCheck';
+
+	marked.use(gfmHeadingId());
 
 	export let data;
 	let form = {
@@ -20,7 +28,7 @@
 
 	let editor: Instance;
 
-	let docLayout: 'edit' | 'render' | 'hybrid' = 'edit';
+	let docLayout: 'edit' | 'render' | 'hybrid' = 'hybrid';
 	let docState: 'base' | 'edited' | 'saving' | 'saved' | 'error' = 'base';
 
 	function resetForm(data: typeof form) {
@@ -36,12 +44,14 @@
 	$: resetForm(data.doc);
 
 	const checkDocIsEdited = debounce((doc: typeof form) => {
-		if (
-			doc.title != data.doc.title ||
-			doc.description != data.doc.description ||
-			doc.content != data.doc.content
-		)
+		const titleIsEdited = doc.title !== data.doc.title;
+		const descriptionIsEdited = doc.description !== data.doc.description;
+		const contentIsEdited = doc.content !== data.doc.content;
+
+		if (titleIsEdited || descriptionIsEdited || contentIsEdited) {
 			docState = 'edited';
+			renderMarkdown(form.content);
+		}
 	}, 1000);
 
 	$: checkDocIsEdited(form);
@@ -72,6 +82,19 @@
 			docState = 'error';
 		}
 	}
+
+	function renderMarkdown(content: string) {
+		markdownContent = DOMPurify.sanitize(
+			marked(content, {
+				mangle: false,
+			}),
+		);
+	}
+
+	let markdownContent = '';
+	$: if (browser) {
+		renderMarkdown(data.doc.content);
+	}
 </script>
 
 <svelte:head>
@@ -80,24 +103,40 @@
 	</title>
 </svelte:head>
 
-<DocHeader
-	bind:docData={form}
-	docId={data.doc.id}
-	docUuid={data.doc.uuid}
-	bind:docLayout
-	mode="edit"
-/>
+{#if docLayout === 'edit' || docLayout === 'hybrid'}
+	<Pane>
+		<div class="fill-height">
+			<DocHeader
+				bind:docData={form}
+				docId={data.doc.id}
+				docUuid={data.doc.uuid}
+				bind:docLayout
+				mode="edit"
+			/>
 
-<InkMde
-	bind:editor
-	bind:value={form.content}
-	options={{
-		interface: {
-			appearance: 'dark',
-			toolbar: true,
-		},
-	}}
-/>
+			<InkMde
+				bind:editor
+				bind:value={form.content}
+				options={{
+					interface: {
+						appearance: 'dark',
+						toolbar: true,
+					},
+				}}
+			/>
+		</div>
+	</Pane>
+{/if}
+
+{#if docLayout === 'render' || docLayout === 'hybrid'}
+	<Pane>
+		<MarkdownContent
+			style="min-height: calc(100vh - 66px);"
+			content={markdownContent}
+			class="p-6"
+		/>
+	</Pane>
+{/if}
 
 {#if docState !== 'base'}
 	<button
@@ -120,3 +159,9 @@
 		{/if}
 	</button>
 {/if}
+
+<style>
+	.fill-height {
+		height: calc(100vh - 66px);
+	}
+</style>
