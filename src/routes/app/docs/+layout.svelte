@@ -38,7 +38,7 @@
 					{$LL.noDocsFound()}
 				</div>
 			{:else}
-				<ul class="overflow-y-auto flex flex-col gap-2">
+				<ul class=" overflow-y-auto flex flex-col gap-2">
 					{#each filteredDocs as doc}
 						{@const isCurrentDoc = $currentDocStore?.id === doc.id}
 						<li>
@@ -70,5 +70,9 @@
 
 	.doc-link-active {
 		@apply bg-neutral text-neutral-content;
+	}
+
+	.fill-height {
+		height: calc(100vh - 66px);
 	}
 </style>
