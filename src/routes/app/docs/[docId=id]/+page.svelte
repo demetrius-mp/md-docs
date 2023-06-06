@@ -11,7 +11,7 @@
 	import { debounce } from 'lodash';
 	import { marked } from 'marked';
 	import { gfmHeadingId } from 'marked-gfm-heading-id';
-	import { Pane } from 'svelte-splitpanes';
+	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import { scale } from 'svelte/transition';
 	import IconContentSave from '~icons/mdi/ContentSave';
 	import IconContentSaveAlert from '~icons/mdi/ContentSaveAlert';
@@ -103,40 +103,46 @@
 	</title>
 </svelte:head>
 
-{#if docLayout === 'edit' || docLayout === 'hybrid'}
-	<Pane>
-		<div class="fill-height">
-			<DocHeader
-				bind:docData={form}
-				docId={data.doc.id}
-				docUuid={data.doc.uuid}
-				bind:docLayout
-				mode="edit"
-			/>
-
-			<InkMde
-				bind:editor
-				bind:value={form.content}
-				options={{
-					interface: {
-						appearance: 'dark',
-						toolbar: true,
-					},
-				}}
-			/>
-		</div>
-	</Pane>
-{/if}
-
-{#if docLayout === 'render' || docLayout === 'hybrid'}
-	<Pane>
-		<MarkdownContent
-			style="min-height: calc(100vh - 66px);"
-			content={markdownContent}
-			class="p-6"
+<Pane>
+	<div class="fill-height">
+		<DocHeader
+			bind:docData={form}
+			docId={data.doc.id}
+			docUuid={data.doc.uuid}
+			bind:docLayout
+			mode="edit"
 		/>
-	</Pane>
-{/if}
+
+		<Splitpanes>
+			{#if docLayout === 'edit' || docLayout === 'hybrid'}
+				<Pane>
+					<InkMde
+						bind:editor
+						bind:value={form.content}
+						options={{
+							interface: {
+								appearance: 'dark',
+								toolbar: true,
+							},
+						}}
+					/>
+				</Pane>
+			{/if}
+
+			{#if docLayout === 'render' || docLayout === 'hybrid'}
+				<Pane>
+					<div class="fill-height">
+						<MarkdownContent
+							style="height: calc(100vh - 158px)"
+							content={markdownContent}
+							class="p-6 overflow-auto"
+						/>
+					</div>
+				</Pane>
+			{/if}
+		</Splitpanes>
+	</div>
+</Pane>
 
 {#if docState !== 'base'}
 	<button
