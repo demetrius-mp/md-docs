@@ -22,7 +22,7 @@
 
 <Splitpanes>
 	<Pane size={19} snapSize={19}>
-		<div class="p-2 flex flex-col gap-3 fill-height">
+		<div class="p-2 flex flex-col gap-3" style="height: calc(100vh - 66px);">
 			<Input placeholder={$LL.form.search()} bind:value={filter} name="filter" />
 			<form action="/app/docs/new" method="post" use:enhance>
 				<button
@@ -70,9 +70,5 @@
 
 	.doc-link-active {
 		@apply bg-neutral text-neutral-content;
-	}
-
-	.fill-height {
-		height: calc(100vh - 66px);
 	}
 </style>

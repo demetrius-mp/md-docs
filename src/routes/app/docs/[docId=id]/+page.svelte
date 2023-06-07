@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import Container from '$lib/components/Container.svelte';
 
 	import DocHeader from '$lib/components/DocHeader.svelte';
 	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
@@ -89,14 +90,18 @@
 </svelte:head>
 
 <Pane>
-	<div class="fill-height">
-		<DocHeader
-			bind:docData={form}
-			docId={data.doc.id}
-			docUuid={data.doc.uuid}
-			bind:docLayout
-			mode="edit"
-		/>
+	<div style="height: calc(100vh - 66px);">
+		<div class="p-2">
+			<DocHeader
+				bind:docData={form}
+				docId={data.doc.id}
+				docUuid={data.doc.uuid}
+				bind:docLayout
+				mode="edit"
+			/>
+		</div>
+
+		<div class="divider h-0 m-0" />
 
 		<Splitpanes>
 			{#if docLayout === 'edit' || docLayout === 'hybrid'}
@@ -116,13 +121,13 @@
 
 			{#if docLayout === 'render' || docLayout === 'hybrid'}
 				<Pane>
-					<div class="fill-height">
+					<Container onlyHorizontal>
 						<MarkdownContent
 							style="height: calc(100vh - 158px)"
 							content={markdownContent}
-							class="p-6 overflow-auto"
+							class="overflow-auto py-6"
 						/>
-					</div>
+					</Container>
 				</Pane>
 			{/if}
 		</Splitpanes>
@@ -152,7 +157,15 @@
 {/if}
 
 <style>
-	.fill-height {
-		height: calc(100vh - 66px);
+	:global(.ͼ1.cm-editor.cm-focused) {
+		outline: 0 !important;
+	}
+
+	:global(.ink-mde) {
+		height: calc(100vh - 155px) !important;
+	}
+
+	:global(.ink-mde) {
+		border: none !important;
 	}
 </style>
