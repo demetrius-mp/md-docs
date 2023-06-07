@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-	import Dialog, { createDialogController } from '$lib/components/Dialog.svelte';
+	import Dialog from '$lib/components/Dialog.svelte';
 	import Dropdown from '$lib/components/Dropdown.svelte';
 	import WrapTranslation from '$lib/components/WrapTranslation.svelte';
 	import LL from '$lib/i18n/i18n-svelte.js';
@@ -29,7 +29,7 @@
 	export let docLayout: 'edit' | 'render' | 'hybrid' = 'edit';
 	export let mode: 'show' | 'edit' = 'show';
 
-	const dialogController = createDialogController();
+	let shareDocDialogIsOpen = false;
 
 	$: shareDocUrl = $page.url.origin + '/shared/' + docUuid;
 
@@ -125,7 +125,11 @@
 					</li>
 
 					<li>
-						<button on:click={dialogController.open} use:itemAction class="flex gap-2">
+						<button
+							on:click={() => (shareDocDialogIsOpen = true)}
+							use:itemAction
+							class="flex gap-2"
+						>
 							<IconShareVariant class="text-xl" />
 							{$LL.docActions.share()}
 						</button>
@@ -153,17 +157,17 @@
 </div>
 
 {#if mode === 'edit'}
-	<Dialog
-		bind:close={dialogController.close}
-		bind:open={dialogController.open}
-		label={$LL.docShare.shareDocument()}
-	>
+	<Dialog label={$LL.docShare.shareDocument()} bind:open={shareDocDialogIsOpen}>
 		<div class="flex justify-between items-center">
 			<h1 class="text-2xl">
 				{$LL.docShare.shareDocument()}
 			</h1>
 
-			<button type="button" class="btn btn-ghost btn-sm" on:click={dialogController.close}>
+			<button
+				type="button"
+				class="btn btn-ghost btn-sm"
+				on:click={() => (shareDocDialogIsOpen = false)}
+			>
 				<IconClose class="text-xl" />
 			</button>
 		</div>

@@ -1,30 +1,21 @@
-<script lang="ts" context="module">
-	type DialogController = {
-		close: () => void;
-		open: () => void;
-	};
-
-	export function createDialogController(): DialogController {
-		return {
-			close: () => {
-				return;
-			},
-			open: () => {
-				return;
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { createDialog } from 'svelte-headlessui';
 	import { Transition } from 'svelte-transition';
 
 	export let zIndex = 10;
 	export let label: string;
 	const dialog = createDialog({ label });
-	export const open = dialog.open;
-	export const close = dialog.close;
+
+	export let open = false;
+
+	$: {
+		if (browser) {
+			open ? dialog.open() : dialog.close();
+		}
+	}
+
+	$: open = $dialog.expanded;
 </script>
 
 <div style:z-index={zIndex} class="relative">
@@ -54,7 +45,7 @@
 						class="w-full max-w-md transform overflow-hidden rounded-2xl bg-base-100 p-5 text-left align-middle shadow-xl transition-all"
 						use:dialog.modal
 					>
-						<slot {close} {open} />
+						<slot />
 					</div>
 				</Transition>
 			</div>
