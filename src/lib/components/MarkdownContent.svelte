@@ -13,7 +13,7 @@
 	export { klass as class };
 </script>
 
-<article {...$$restProps} class="prose max-w-full {klass}">
+<article {...$$restProps} class="prose lg:prose-lg xl:prose-xl max-w-full {klass}">
 	{@html content}
 </article>
 
