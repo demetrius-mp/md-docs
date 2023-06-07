@@ -82,7 +82,7 @@
 		}
 	}
 
-	let markdownContent = parseMarkdown(data.doc.content);
+	$: markdownContent = parseMarkdown(data.doc.content);
 </script>
 
 <svelte:head>
