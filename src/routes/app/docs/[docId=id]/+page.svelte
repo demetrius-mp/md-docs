@@ -24,7 +24,9 @@
 
 	let editor: Instance;
 
-	let docLayout: 'edit' | 'render' | 'hybrid' = 'hybrid';
+	type DocLayout = 'edit' | 'render' | 'hybrid';
+
+	let docLayout: DocLayout = 'edit';
 	let docState: 'base' | 'edited' | 'saving' | 'saved' | 'error' = 'base';
 
 	function resetForm(data: typeof form) {

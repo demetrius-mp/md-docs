@@ -34,7 +34,7 @@ const pt = {
 		layout: 'Layout',
 		edit: 'Edição',
 		hybrid: 'Híbrido',
-		render: 'Renderização',
+		render: 'Renderizado',
 	},
 	docActions: {
 		actions: 'Ações',

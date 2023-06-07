@@ -125,7 +125,7 @@ type RootTranslation = {
 		 */
 		hybrid: string
 		/**
-		 * R​e​n​d​e​r​i​z​a​ç​ã​o
+		 * R​e​n​d​e​r​i​z​a​d​o
 		 */
 		render: string
 	}
@@ -268,7 +268,7 @@ export type TranslationFunctions = {
 		 */
 		hybrid: () => LocalizedString
 		/**
-		 * Renderização
+		 * Renderizado
 		 */
 		render: () => LocalizedString
 	}
