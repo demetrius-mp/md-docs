@@ -43,7 +43,7 @@ const pt = {
 	},
 	docShare: {
 		shareDocument: 'Compartilhar documento',
-		onlyViewLink: 'Link de <>visualização<>:',
+		onlyViewLink: 'Link para <>visualização<>:',
 	},
 } satisfies BaseTranslation;
 

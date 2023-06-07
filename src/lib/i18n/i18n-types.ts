@@ -6,6 +6,7 @@ export type BaseTranslation = BaseTranslationType
 export type BaseLocale = 'pt'
 
 export type Locales =
+	| 'en'
 	| 'pt'
 
 export type Translation = RootTranslation
@@ -149,7 +150,7 @@ type RootTranslation = {
 		 */
 		shareDocument: string
 		/**
-		 * L​i​n​k​ ​d​e​ ​<​>​v​i​s​u​a​l​i​z​a​ç​ã​o​<​>​:
+		 * L​i​n​k​ ​p​a​r​a​ ​<​>​v​i​s​u​a​l​i​z​a​ç​ã​o​<​>​:
 		 */
 		onlyViewLink: string
 	}
@@ -292,7 +293,7 @@ export type TranslationFunctions = {
 		 */
 		shareDocument: () => LocalizedString
 		/**
-		 * Link de <>visualização<>:
+		 * Link para <>visualização<>:
 		 */
 		onlyViewLink: () => LocalizedString
 	}
