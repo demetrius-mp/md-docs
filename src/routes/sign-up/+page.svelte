@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import Container from '$lib/components/Container.svelte';
 	import Input from '$lib/components/Form/Input.svelte';
 	import SubmitButton from '$lib/components/Form/SubmitButton.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
@@ -27,42 +28,40 @@
 	<title>{PUBLIC_APP_NAME} - {$LL.signUp()}</title>
 </svelte:head>
 
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4 mb-4">
-	<div class="mx-auto max-w-6xl">
-		<form method="post" action="/sign-up" class="flex flex-col gap-3" use:enhance>
-			<Input
-				name="name"
-				type="text"
-				label={$LL.form.name()}
-				bind:value={$form.name}
-				{...$constraints.name}
-				errors={$errors.name}
-			/>
-			<Input
-				name="email"
-				type="email"
-				label={$LL.form.email()}
-				bind:value={$form.email}
-				{...$constraints.email}
-				errors={$errors.email}
-			/>
-			<Input
-				name="password"
-				type="password"
-				label={$LL.form.password()}
-				bind:value={$form.password}
-				{...$constraints.password}
-				errors={$errors.password}
-			/>
-			<Input
-				name="confirmPassword"
-				type="password"
-				label={$LL.form.confirmPassword()}
-				bind:value={$form.confirmPassword}
-				{...$constraints.confirmPassword}
-				errors={$errors.confirmPassword}
-			/>
-			<SubmitButton class="w-full" isSubmitting={$submitting} />
-		</form>
-	</div>
-</div>
+<Container>
+	<form method="post" action="/sign-up" class="flex flex-col gap-3" use:enhance>
+		<Input
+			name="name"
+			type="text"
+			label={$LL.form.name()}
+			bind:value={$form.name}
+			{...$constraints.name}
+			errors={$errors.name}
+		/>
+		<Input
+			name="email"
+			type="email"
+			label={$LL.form.email()}
+			bind:value={$form.email}
+			{...$constraints.email}
+			errors={$errors.email}
+		/>
+		<Input
+			name="password"
+			type="password"
+			label={$LL.form.password()}
+			bind:value={$form.password}
+			{...$constraints.password}
+			errors={$errors.password}
+		/>
+		<Input
+			name="confirmPassword"
+			type="password"
+			label={$LL.form.confirmPassword()}
+			bind:value={$form.confirmPassword}
+			{...$constraints.confirmPassword}
+			errors={$errors.confirmPassword}
+		/>
+		<SubmitButton class="w-full" isSubmitting={$submitting} />
+	</form>
+</Container>
