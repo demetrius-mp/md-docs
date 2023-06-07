@@ -3,6 +3,7 @@ import hljs from 'highlight.js';
 import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedHighlight } from 'marked-highlight';
+import markedKatex from 'marked-katex-extension';
 
 import { browser } from '$app/environment';
 
@@ -14,6 +15,11 @@ marked.use(
 			const language = hljs.getLanguage(lang) ? lang : 'plaintext';
 			return hljs.highlight(code, { language }).value;
 		},
+	}),
+);
+marked.use(
+	markedKatex({
+		throwOnError: false,
 	}),
 );
 
