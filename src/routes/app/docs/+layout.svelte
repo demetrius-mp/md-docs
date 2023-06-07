@@ -11,10 +11,10 @@
 	let filter = '';
 
 	function filterDoc(doc: (typeof data.docs)[number], filter: string) {
-		const title_is_included = doc.title.toLowerCase().includes(filter.toLowerCase());
-		const description_is_included = doc.description.toLowerCase().includes(filter.toLowerCase());
+		const titleIsIncluded = doc.title.toLowerCase().includes(filter.toLowerCase());
+		const descriptionIsIncluded = doc.description.toLowerCase().includes(filter.toLowerCase());
 
-		return title_is_included || description_is_included;
+		return titleIsIncluded || descriptionIsIncluded;
 	}
 
 	$: filteredDocs = data.docs.filter((doc) => filterDoc(doc, filter));
