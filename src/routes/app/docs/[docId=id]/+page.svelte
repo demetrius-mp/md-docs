@@ -1,23 +1,18 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 
 	import DocHeader from '$lib/components/DocHeader.svelte';
 	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
+	import { parseMarkdown } from '$lib/parseMarkdown.js';
 	import { currentDocStore } from '$lib/stores/currentDocStore.js';
-	import DOMPurify from 'dompurify';
 	import type { Instance } from 'ink-mde';
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
-	import { marked } from 'marked';
-	import { gfmHeadingId } from 'marked-gfm-heading-id';
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import { scale } from 'svelte/transition';
 	import IconContentSave from '~icons/mdi/ContentSave';
 	import IconContentSaveAlert from '~icons/mdi/ContentSaveAlert';
 	import IconContentSaveCheck from '~icons/mdi/ContentSaveCheck';
-
-	marked.use(gfmHeadingId());
 
 	export let data;
 	let form = {
@@ -50,7 +45,8 @@
 
 		if (titleIsEdited || descriptionIsEdited || contentIsEdited) {
 			docState = 'edited';
-			renderMarkdown(form.content);
+
+			markdownContent = parseMarkdown(form.content);
 		}
 	}, 1000);
 
@@ -83,18 +79,7 @@
 		}
 	}
 
-	function renderMarkdown(content: string) {
-		markdownContent = DOMPurify.sanitize(
-			marked(content, {
-				mangle: false,
-			}),
-		);
-	}
-
-	let markdownContent = '';
-	$: if (browser) {
-		renderMarkdown(data.doc.content);
-	}
+	let markdownContent = parseMarkdown(data.doc.content);
 </script>
 
 <svelte:head>

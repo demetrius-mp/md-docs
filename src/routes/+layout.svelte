@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import { navigating } from '$app/stores';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
@@ -10,9 +11,11 @@
 	import '../app.postcss';
 
 	export let data;
+
+	$: isNavigating = browser ? Boolean($navigating) : false;
 </script>
 
-<PageLoadingIndicator isLoading={Boolean($navigating)} />
+<PageLoadingIndicator isLoading={isNavigating} />
 
 <Notifications />
 
