@@ -3,23 +3,15 @@
 
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import DocHeader from '$lib/components/DocHeader.svelte';
-	import DOMPurify from 'dompurify';
-	import { marked } from 'marked';
-	import { gfmHeadingId } from 'marked-gfm-heading-id';
+	import { parseMarkdown } from '$lib/parseMarkdown.js';
 	import { onMount } from 'svelte';
 
 	export let data;
 
-	marked.use(gfmHeadingId());
-
 	let markdownContent = '';
 
 	onMount(() => {
-		markdownContent = DOMPurify.sanitize(
-			marked(data.doc.content, {
-				mangle: false,
-			}),
-		);
+		markdownContent = parseMarkdown(data.doc.content);
 	});
 </script>
 

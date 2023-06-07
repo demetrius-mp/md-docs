@@ -14,8 +14,8 @@
 	let klass = '';
 	export { klass as class };
 
-	const renderMathInElementAction: Action<HTMLElement> = (node) => {
-		renderMathInElement(node, {
+	function renderMathInElementWrapper(element: HTMLElement) {
+		renderMathInElement(element, {
 			delimiters: [
 				{
 					left: '$$',
@@ -30,15 +30,25 @@
 			],
 			throwOnError: false,
 		});
+	}
+
+	const renderMathInElementAction: Action<HTMLElement, string> = (node, _) => {
+		renderMathInElementWrapper(node);
+
+		return {
+			update(_) {
+				renderMathInElementWrapper(node);
+			},
+		};
 	};
 </script>
 
-<div use:renderMathInElementAction {...$$restProps} class="prose max-w-full {klass}">
+<article use:renderMathInElementAction={content} {...$$restProps} class="prose max-w-full {klass}">
 	{@html content}
-</div>
+</article>
 
 <style global lang="postcss">
-	div.prose > pre:has(code.hljs) {
+	article.prose > pre:has(code.hljs) {
 		@apply p-0;
 	}
 </style>
