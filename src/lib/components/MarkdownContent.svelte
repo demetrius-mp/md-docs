@@ -15,13 +15,14 @@
 
 	let htmlElement: HTMLElement;
 
-	$: if (htmlElement && content)
+	$: if (htmlElement && content) {
 		renderMathInElement(htmlElement, {
 			delimiters: [
 				{ left: '$$', right: '$$', display: true },
 				{ left: '$', right: '$', display: false },
 			],
 		});
+	}
 </script>
 
 <article

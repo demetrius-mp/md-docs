@@ -40,6 +40,7 @@ const pt = {
 		actions: 'Ações',
 		share: 'Compartilhar',
 		delete: 'Excluir',
+		confirmDelete: 'Tem certeza que deseja excluir este documento?',
 	},
 	docShare: {
 		shareDocument: 'Compartilhar documento',

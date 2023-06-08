@@ -143,6 +143,10 @@ type RootTranslation = {
 		 * E​x​c​l​u​i​r
 		 */
 		'delete': string
+		/**
+		 * T​e​m​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​d​e​s​e​j​a​ ​e​x​c​l​u​i​r​ ​e​s​t​e​ ​d​o​c​u​m​e​n​t​o​?
+		 */
+		confirmDelete: string
 	}
 	docShare: {
 		/**
@@ -286,6 +290,10 @@ export type TranslationFunctions = {
 		 * Excluir
 		 */
 		'delete': () => LocalizedString
+		/**
+		 * Tem certeza que deseja excluir este documento?
+		 */
+		confirmDelete: () => LocalizedString
 	}
 	docShare: {
 		/**

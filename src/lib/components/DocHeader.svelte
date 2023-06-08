@@ -136,7 +136,13 @@
 					</li>
 
 					<li class="text-error hover:text-error">
-						<button use:itemAction form="delete-doc" class="flex gap-2" type="submit">
+						<button
+							on:click={(e) => !confirm($LL.docActions.confirmDelete()) && e.preventDefault()}
+							use:itemAction
+							form="delete-doc"
+							class="flex gap-2"
+							type="submit"
+						>
 							<IconTrash class="text-xl" />
 							{$LL.docActions.delete()}
 						</button>

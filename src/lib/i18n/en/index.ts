@@ -40,6 +40,7 @@ const pt = {
 		actions: 'Actions',
 		share: 'Share',
 		delete: 'Delete',
+		confirmDelete: 'Are you sure you want to delete this document?',
 	},
 	docShare: {
 		shareDocument: 'Share document',
