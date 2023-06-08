@@ -39,6 +39,7 @@ const pt = {
 	docActions: {
 		actions: 'Actions',
 		share: 'Share',
+		createCopy: 'Create copy',
 		delete: 'Delete',
 		confirmDelete: 'Are you sure you want to delete this document?',
 	},

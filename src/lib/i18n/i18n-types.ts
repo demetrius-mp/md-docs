@@ -140,6 +140,10 @@ type RootTranslation = {
 		 */
 		share: string
 		/**
+		 * C​r​i​a​r​ ​c​ó​p​i​a
+		 */
+		createCopy: string
+		/**
 		 * E​x​c​l​u​i​r
 		 */
 		'delete': string
@@ -286,6 +290,10 @@ export type TranslationFunctions = {
 		 * Compartilhar
 		 */
 		share: () => LocalizedString
+		/**
+		 * Criar cópia
+		 */
+		createCopy: () => LocalizedString
 		/**
 		 * Excluir
 		 */

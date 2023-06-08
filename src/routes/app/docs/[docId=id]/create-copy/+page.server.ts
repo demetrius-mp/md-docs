@@ -1,6 +1,5 @@
+import { db } from '$lib/server/db';
 import { error, redirect } from '@sveltejs/kit';
-
-import { db } from '$lib/server/db.js';
 
 export const actions = {
 	default: async (event) => {
@@ -12,30 +11,25 @@ export const actions = {
 
 		const docId = parseInt(event.params.docId, 10);
 
-		const res = await db.doc.deleteMany({
+		const doc = await db.doc.findFirst({
 			where: {
 				id: docId,
-				userId: currentUser.id,
 			},
 		});
 
-		if (res.count === 0) {
+		if (!doc) {
 			throw error(404);
 		}
 
-		const firstDoc = await db.doc.findFirst({
-			where: {
+		const newDoc = await db.doc.create({
+			data: {
+				title: doc.title,
+				description: doc.description,
+				content: doc.content,
 				userId: currentUser.id,
-			},
-			orderBy: {
-				id: 'desc',
 			},
 		});
 
-		if (!firstDoc) {
-			throw redirect(302, `/app/docs`);
-		}
-
-		throw redirect(302, `/app/docs/${firstDoc.id}`);
+		throw redirect(302, `/app/docs/${newDoc.id}`);
 	},
 };

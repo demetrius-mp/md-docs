@@ -39,6 +39,7 @@ const pt = {
 	docActions: {
 		actions: 'Ações',
 		share: 'Compartilhar',
+		createCopy: 'Criar cópia',
 		delete: 'Excluir',
 		confirmDelete: 'Tem certeza que deseja excluir este documento?',
 	},

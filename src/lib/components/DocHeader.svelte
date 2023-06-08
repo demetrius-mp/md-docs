@@ -10,6 +10,7 @@
 	import IconClipboardCheckOutline from '~icons/mdi/ClipboardCheckOutline';
 	import IconClipboardOutline from '~icons/mdi/ClipboardOutline';
 	import IconClose from '~icons/mdi/Close';
+	import IconContentCopy from '~icons/mdi/ContentCopy';
 	import IconDotsVertical from '~icons/mdi/DotsVertical';
 	import IconEye from '~icons/mdi/Eye';
 	import IconFileDocument from '~icons/mdi/FileDocument';
@@ -50,6 +51,14 @@
 		class="invisible"
 		id="delete-doc"
 		action="/app/docs/{docId}/delete"
+		method="post"
+		use:enhance
+	/>
+
+	<form
+		action="/app/docs/{docId}/create-copy"
+		class="invisible"
+		id="create-copy"
 		method="post"
 		use:enhance
 	/>
@@ -122,6 +131,13 @@
 
 					<li class="menu-title">
 						{$LL.docActions.actions()}
+					</li>
+
+					<li>
+						<button form="create-copy" type="submit" use:itemAction class="flex gap-2">
+							<IconContentCopy class="text-xl" />
+							{$LL.docActions.createCopy()}
+						</button>
 					</li>
 
 					<li>
