@@ -2,6 +2,7 @@
 	import 'highlight.js/styles/github-dark.css';
 	import renderMathInElement from 'katex/contrib/auto-render';
 	import 'katex/dist/katex.min.css';
+	import type { Action } from 'svelte/action';
 	import type { HTMLBaseAttributes } from 'svelte/elements';
 
 	interface $$Props extends HTMLBaseAttributes {
@@ -13,20 +14,29 @@
 	let klass = '';
 	export { klass as class };
 
-	let htmlElement: HTMLElement;
-
-	$: if (htmlElement && content) {
-		renderMathInElement(htmlElement, {
+	const renderMathInElementAction: Action<HTMLElement, string> = (node, _) => {
+		renderMathInElement(node, {
 			delimiters: [
 				{ left: '$$', right: '$$', display: true },
 				{ left: '$', right: '$', display: false },
 			],
 		});
-	}
+
+		return {
+			update(_) {
+				renderMathInElement(node, {
+					delimiters: [
+						{ left: '$$', right: '$$', display: true },
+						{ left: '$', right: '$', display: false },
+					],
+				});
+			},
+		};
+	};
 </script>
 
 <article
-	bind:this={htmlElement}
+	use:renderMathInElementAction={content}
 	{...$$restProps}
 	class="prose lg:prose-lg xl:prose-xl max-w-full {klass}"
 >

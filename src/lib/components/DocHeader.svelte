@@ -73,8 +73,7 @@
 				type="text"
 				disabled={mode === 'show'}
 				class:hover:!outline-none={mode === 'show'}
-				style="font-size: 32px"
-				class="invisible-input"
+				class="invisible-input !text-3xl"
 				bind:value={docData.title}
 			/>
 		</div>
@@ -87,7 +86,7 @@
 				<ul
 					slot="menuItems"
 					let:itemAction
-					class="gap-1 z-50 menu menu-sm bg-base-300 w-56 p-2 rounded-box"
+					class="gap-1 z-50 menu bg-base-300 w-56 p-3 rounded-box"
 				>
 					<li class="menu-title">{$LL.docLayout.layout()}</li>
 
@@ -172,8 +171,7 @@
 		disabled={mode === 'show'}
 		class:hover:!outline-none={mode === 'show'}
 		type="text"
-		style="font-size: 20px"
-		class="invisible-input w-full"
+		class="invisible-input w-full !text-xl"
 		bind:value={docData.description}
 	/>
 </div>
