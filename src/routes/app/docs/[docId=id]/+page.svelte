@@ -26,7 +26,7 @@
 
 	type DocLayout = 'edit' | 'render' | 'hybrid';
 
-	let docLayout: DocLayout = 'edit';
+	let docLayout: DocLayout = 'hybrid';
 	let docState: 'base' | 'edited' | 'saving' | 'saved' | 'error' = 'base';
 
 	function resetForm(data: typeof form) {
@@ -125,7 +125,7 @@
 				<Pane>
 					<Container onlyHorizontal>
 						<MarkdownContent
-							style="height: calc(100vh - 158px)"
+							style="height: calc(100vh - 162px)"
 							content={markdownContent}
 							class="overflow-auto py-6"
 						/>
