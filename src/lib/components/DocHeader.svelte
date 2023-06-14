@@ -32,7 +32,7 @@
 
 	let shareDocDialogIsOpen = false;
 
-	$: shareDocUrl = $page.url.origin + '/shared/' + docUuid;
+	$: shareDocUrl = $page.url.origin + '/shared/docs/' + docUuid;
 
 	let copiedToClipboard = false;
 	function copyToClipboard() {
