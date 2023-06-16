@@ -2,6 +2,7 @@ import { json, redirect } from '@sveltejs/kit';
 import { z } from 'zod';
 
 import { db } from '$lib/server/db.js';
+import type { RequestHandler } from './$types';
 
 const schema = z.object({
 	title: z.string().max(255),
@@ -9,7 +10,7 @@ const schema = z.object({
 	content: z.string(),
 });
 
-export async function POST(event) {
+export const POST = async function (event) {
 	const { currentUser } = event.locals;
 
 	if (!currentUser) {
@@ -46,4 +47,4 @@ export async function POST(event) {
 	return new Response(null, {
 		status: 200,
 	});
-}
+} satisfies RequestHandler;

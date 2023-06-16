@@ -5,8 +5,9 @@
 	import { currentDocStore } from '$lib/stores/currentDocStore.js';
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import IconFileDocumentPlus from '~icons/mdi/FileDocumentPlus';
+	import type { LayoutData } from './$types';
 
-	export let data;
+	export let data: LayoutData;
 
 	let filter = '';
 
@@ -59,7 +60,7 @@
 	<slot />
 </Splitpanes>
 
-<style>
+<style lang="postcss">
 	.doc-link {
 		@apply block bg-base-200 rounded-box p-3 pl-4 transition duration-200 ease-in-out;
 	}

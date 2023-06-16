@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { generateJwt } from '$lib/server/auth/jwt';
 import { verifyPassword } from '$lib/server/auth/password';
 import { db } from '$lib/server/db';
+import type { Actions, PageServerLoad } from './$types';
 
 async function findUserByEmail(email: string) {
 	const user = await db.user.findUnique({
@@ -21,7 +22,7 @@ const schema = z.object({
 	password: z.string().min(8),
 });
 
-export async function load(event) {
+export const load = async function (event) {
 	if (event.locals.currentUser) {
 		throw redirect(302, '/app');
 	}
@@ -31,7 +32,7 @@ export async function load(event) {
 	return {
 		form,
 	};
-}
+} satisfies PageServerLoad;
 
 export const actions = {
 	default: async (event) => {
@@ -70,4 +71,4 @@ export const actions = {
 
 		throw redirect(302, '/app');
 	},
-};
+} satisfies Actions;

@@ -10,8 +10,9 @@
 	import IconContentCopy from '~icons/mdi/ContentCopy';
 	import IconDotsVertical from '~icons/mdi/DotsVertical';
 	import IconFileDocument from '~icons/mdi/FileDocument';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
 
 	let markdownContent = '';
 

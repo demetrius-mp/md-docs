@@ -9,8 +9,9 @@
 	import LL from '$lib/i18n/i18n-svelte';
 	import IconLogoutVariant from '~icons/mdi/LogoutVariant';
 	import '../app.postcss';
+	import type { LayoutData } from './$types';
 
-	export let data;
+	export let data: LayoutData;
 
 	$: isNavigating = browser ? Boolean($navigating) : false;
 </script>

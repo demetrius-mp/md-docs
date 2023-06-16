@@ -1,8 +1,9 @@
 import { error } from '@sveltejs/kit';
 
 import { db } from '$lib/server/db';
+import type { PageServerLoad } from './$types';
 
-export async function load(event) {
+export const load = async function (event) {
 	const docId = parseInt(event.params.docId, 10);
 
 	const doc = await db.doc.findUnique({
@@ -18,4 +19,4 @@ export async function load(event) {
 	return {
 		doc,
 	};
-}
+} satisfies PageServerLoad;

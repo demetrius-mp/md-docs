@@ -1,6 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 
 import { db } from '$lib/server/db.js';
+import type { Actions } from './$types';
 
 export const actions = {
 	default: async (event) => {
@@ -38,4 +39,4 @@ export const actions = {
 
 		throw redirect(302, `/app/docs/${firstDoc.id}`);
 	},
-};
+} satisfies Actions;

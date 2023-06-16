@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
 export const actions = {
 	default: ({ cookies }) => {
@@ -9,4 +10,4 @@ export const actions = {
 
 		throw redirect(302, '/sign-in');
 	},
-};
+} satisfies Actions;

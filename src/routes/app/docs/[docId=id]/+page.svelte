@@ -11,8 +11,9 @@
 	import InkMde from 'ink-mde/svelte';
 	import { debounce } from 'lodash';
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
 	let form = {
 		title: data.doc.title,
 		description: data.doc.description,

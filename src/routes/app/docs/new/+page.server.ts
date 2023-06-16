@@ -2,6 +2,7 @@ import { redirect } from '@sveltejs/kit';
 
 import { getServerLocaleStoreFromCookie, LANG_PARAM } from '$lib/i18n.helpers';
 import { db } from '$lib/server/db';
+import type { Actions } from './$types';
 
 export const actions = {
 	default: async (event) => {
@@ -24,4 +25,4 @@ export const actions = {
 
 		throw redirect(302, `/app/docs/${doc.id}`);
 	},
-};
+} satisfies Actions;
