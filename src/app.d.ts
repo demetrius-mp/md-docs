@@ -12,7 +12,10 @@ declare global {
 		// interface Platform {}
 		// interface PageData {}
 		interface Locals {
-			currentUser?: Omit<import('@prisma/client').User, 'password'>;
+			currentUser?: Pick<
+				import('@prisma/client').User,
+				'id' | 'email' | 'name' | 'profilePictureUrl'
+			>;
 		}
 	}
 }

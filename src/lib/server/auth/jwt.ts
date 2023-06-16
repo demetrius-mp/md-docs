@@ -39,7 +39,12 @@ export async function getUserFromJwt(jwt?: string) {
 			where: {
 				id: userId,
 			},
-			select: db.$exclude('user', ['password']),
+			select: {
+				id: true,
+				email: true,
+				name: true,
+				profilePictureUrl: true,
+			},
 		});
 
 		if (!user) return undefined;
