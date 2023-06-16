@@ -48,6 +48,7 @@ const pt = {
 		onlyViewLink: 'Link for <>viewing<>:',
 	},
 	mustBeAuthenticatedToAccessPage: 'You must be authenticated to access this page',
+	welcome: 'Welcome, <>{0:string}<>!',
 } satisfies BaseTranslation;
 
 export default pt;
