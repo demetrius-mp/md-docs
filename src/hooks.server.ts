@@ -4,7 +4,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { LANG_PARAM } from '$lib/i18n.helpers';
 import { getUserFromJwt } from '$lib/server/auth/jwt';
 
-const handleUser = (async ({ event, resolve }) => {
+const handleUser = async function ({ event, resolve }) {
 	const jwt = event.cookies.get('jwt');
 	const user = await getUserFromJwt(jwt);
 	event.locals.currentUser = user;
@@ -15,9 +15,9 @@ const handleUser = (async ({ event, resolve }) => {
 	}
 
 	return await resolve(event);
-}) satisfies Handle;
+} satisfies Handle;
 
-const handleLocale = (async ({ event, resolve }) => {
+const handleLocale = async function ({ event, resolve }) {
 	const newLocale = event.url.searchParams.get(LANG_PARAM);
 
 	if (newLocale) {
@@ -34,6 +34,6 @@ const handleLocale = (async ({ event, resolve }) => {
 	}
 
 	return await resolve(event);
-}) satisfies Handle;
+} satisfies Handle;
 
 export const handle = sequence(handleLocale, handleUser);
