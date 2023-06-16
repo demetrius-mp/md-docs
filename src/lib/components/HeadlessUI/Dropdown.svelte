@@ -1,29 +1,21 @@
-<script lang="ts" context="module">
-	type DropdownController = {
-		close: () => void;
-		open: () => void;
-	};
-
-	export function createDropdownController(): DropdownController {
-		return {
-			close: () => {
-				return;
-			},
-			open: () => {
-				return;
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
+	import { browser } from '$app/environment';
+
 	import { createMenu } from 'svelte-headlessui';
 	import Transition from 'svelte-transition';
 
 	export let label: string;
 	const dropdown = createMenu({ label });
-	export const open = dropdown.open;
-	export const close = dropdown.close;
+
+	export let open = false;
+
+	$: {
+		if (browser) {
+			open ? dropdown.open() : dropdown.close();
+		}
+	}
+
+	$: open = $dropdown.expanded;
 </script>
 
 <div class="relative inline-block text-left">

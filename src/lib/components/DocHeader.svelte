@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-	import Dialog from '$lib/components/Dialog.svelte';
-	import Dropdown from '$lib/components/Dropdown.svelte';
+	import Dialog from '$lib/components/HeadlessUI/Dialog.svelte';
+	import Dropdown from '$lib/components/HeadlessUI/Dropdown.svelte';
 	import WrapTranslation from '$lib/components/WrapTranslation.svelte';
 	import LL from '$lib/i18n/i18n-svelte.js';
 	import type { Doc } from '@prisma/client';

@@ -3,7 +3,7 @@
 	import { enhance } from '$app/forms';
 	import { navigating } from '$app/stores';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import Dropdown from '$lib/components/Dropdown.svelte';
+	import Dropdown from '$lib/components/HeadlessUI/Dropdown.svelte';
 	import Notifications from '$lib/components/Notifications/Notifications.svelte';
 	import PageLoadingIndicator from '$lib/components/PageLoadingIndicator.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
