@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import Container from '$lib/components/Container.svelte';
+	import Container from '$lib/components/Utils/Container.svelte';
 
 	import DocHeader from '$lib/components/Site/DocHeader.svelte';
 	import MarkdownContent from '$lib/components/Site/MarkdownContent.svelte';

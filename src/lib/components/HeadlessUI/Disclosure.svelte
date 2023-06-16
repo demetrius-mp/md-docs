@@ -16,8 +16,4 @@
 	$: open = $disclosure.expanded;
 </script>
 
-<slot
-	buttonAction={disclosure.button}
-	panelAction={disclosure.panel}
-	expanded={$disclosure.expanded}
-/>
+<slot buttonAction={disclosure.button} panelAction={disclosure.panel} />

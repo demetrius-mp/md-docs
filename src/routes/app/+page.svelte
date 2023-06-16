@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import Container from '$lib/components/Container.svelte';
+	import Container from '$lib/components/Utils/Container.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
 	import IconArrowRight from '~icons/mdi/ArrowRight';
 </script>

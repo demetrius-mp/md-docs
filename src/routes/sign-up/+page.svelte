@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
-	import Container from '$lib/components/Container.svelte';
 	import Input from '$lib/components/Form/Input.svelte';
 	import SubmitButton from '$lib/components/Form/SubmitButton.svelte';
+	import Container from '$lib/components/Utils/Container.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';

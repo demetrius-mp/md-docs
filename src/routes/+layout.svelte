@@ -5,7 +5,7 @@
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import Dropdown from '$lib/components/HeadlessUI/Dropdown.svelte';
 	import Notifications from '$lib/components/Notifications/Notifications.svelte';
-	import PageLoadingIndicator from '$lib/components/PageLoadingIndicator.svelte';
+	import PageLoadingIndicator from '$lib/components/Utils/PageLoadingIndicator.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
 	import IconLogoutVariant from '~icons/mdi/LogoutVariant';
 	import '../app.postcss';
