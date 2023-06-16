@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import Dialog from '$lib/components/HeadlessUI/Dialog.svelte';
 	import Dropdown from '$lib/components/HeadlessUI/Dropdown.svelte';
-	import WrapTranslation from '$lib/components/WrapTranslation.svelte';
+	import WrapTranslation from '$lib/components/Utils/WrapTranslation.svelte';
 	import LL from '$lib/i18n/i18n-svelte.js';
 	import type { Doc } from '@prisma/client';
 	import IconBookOpen from '~icons/mdi/BookOpen';
