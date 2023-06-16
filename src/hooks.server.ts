@@ -10,12 +10,14 @@ const handleUser = (async ({ event, resolve }) => {
 	event.locals.currentUser = user;
 
 	const routeId = event.route.id;
-	if (routeId?.startsWith('/app')) {
-		if (!user) {
-			throw redirect(302, '/sign-in');
-		}
+	if (routeId?.startsWith('/app') && !user) {
+		throw redirect(302, '/sign-in');
 	}
 
+	return await resolve(event);
+}) satisfies Handle;
+
+const handleLocale = (async ({ event, resolve }) => {
 	const newLocale = event.url.searchParams.get(LANG_PARAM);
 
 	if (newLocale) {
@@ -34,4 +36,4 @@ const handleUser = (async ({ event, resolve }) => {
 	return await resolve(event);
 }) satisfies Handle;
 
-export const handle = sequence(handleUser);
+export const handle = sequence(handleLocale, handleUser);
