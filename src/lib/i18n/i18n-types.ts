@@ -162,6 +162,10 @@ type RootTranslation = {
 		 */
 		onlyViewLink: string
 	}
+	/**
+	 * V​o​c​ê​ ​p​r​e​c​i​s​a​ ​e​s​t​a​r​ ​a​u​t​e​n​t​i​c​a​d​o​ ​p​a​r​a​ ​a​c​e​s​s​a​r​ ​e​s​t​a​ ​p​á​g​i​n​a
+	 */
+	mustBeAuthenticatedToAccessPage: string
 }
 
 export type TranslationFunctions = {
@@ -313,6 +317,10 @@ export type TranslationFunctions = {
 		 */
 		onlyViewLink: () => LocalizedString
 	}
+	/**
+	 * Você precisa estar autenticado para acessar esta página
+	 */
+	mustBeAuthenticatedToAccessPage: () => LocalizedString
 }
 
 export type Formatters = {}

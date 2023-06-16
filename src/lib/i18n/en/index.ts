@@ -47,6 +47,7 @@ const pt = {
 		shareDocument: 'Share document',
 		onlyViewLink: 'Link for <>viewing<>:',
 	},
+	mustBeAuthenticatedToAccessPage: 'You must be authenticated to access this page',
 } satisfies BaseTranslation;
 
 export default pt;

@@ -1,17 +1,29 @@
-import { redirect, type Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-import { LANG_PARAM } from '$lib/i18n.helpers';
+import { LANG_PARAM, getServerLocaleStoreFromCookie } from '$lib/i18n.helpers';
 import { getUserFromJwt } from '$lib/server/auth/jwt';
+import { redirect } from 'sveltekit-flash-message/server';
 
 const handleUser = async function ({ event, resolve }) {
 	const jwt = event.cookies.get('jwt');
 	const user = await getUserFromJwt(jwt);
 	event.locals.currentUser = user;
 
+	const $LL = getServerLocaleStoreFromCookie(event.cookies.get(LANG_PARAM));
+
 	const routeId = event.route.id;
 	if (routeId?.startsWith('/app') && !user) {
-		throw redirect(302, '/sign-in');
+		const fromUrl = event.url.pathname + event.url.search;
+		throw redirect(
+			303,
+			`/sign-in?redirectTo=${fromUrl}`,
+			{
+				kind: 'warning',
+				description: $LL.mustBeAuthenticatedToAccessPage(),
+			},
+			event,
+		);
 	}
 
 	return await resolve(event);

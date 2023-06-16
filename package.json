@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.1.52",
 		"@sveltejs/adapter-auto": "^1.0.0-next.90",
-		"@sveltejs/kit": "^1.0.0-next.587",
+		"@sveltejs/kit": "^1.20.2",
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/bcryptjs": "^2.4.2",
@@ -62,6 +62,7 @@
 		"svelte-headlessui": "^0.0.16",
 		"svelte-splitpanes": "^0.7.14",
 		"svelte-transition": "^0.0.7",
+		"sveltekit-flash-message": "^1.0.0",
 		"sveltekit-superforms": "^1.0.0",
 		"typesafe-i18n": "^5.24.3",
 		"zod": "^3.21.4"

@@ -23,7 +23,7 @@
 </svelte:head>
 
 <Container>
-	<form method="post" action="/sign-in" class="flex flex-col gap-3" use:enhance>
+	<form method="post" class="flex flex-col gap-3" use:enhance>
 		<Input
 			name="email"
 			type="email"

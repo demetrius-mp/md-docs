@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
-	import { navigating } from '$app/stores';
+	import { beforeNavigate } from '$app/navigation';
+	import { navigating, page } from '$app/stores';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import Dropdown from '$lib/components/HeadlessUI/Dropdown.svelte';
 	import Notifications from '$lib/components/Notifications/Notifications.svelte';
 	import PageLoadingIndicator from '$lib/components/Utils/PageLoadingIndicator.svelte';
 	import LL from '$lib/i18n/i18n-svelte';
+	import { initFlash } from 'sveltekit-flash-message/client';
 	import IconLogoutVariant from '~icons/mdi/LogoutVariant';
 	import '../app.postcss';
 	import type { LayoutData } from './$types';
@@ -14,11 +16,19 @@
 	export let data: LayoutData;
 
 	$: isNavigating = browser ? Boolean($navigating) : false;
+
+	const flash = initFlash(page);
+
+	beforeNavigate((nav) => {
+		if ($flash && nav.from?.url.toString() != nav.to?.url.toString()) {
+			$flash = undefined;
+		}
+	});
 </script>
 
 <PageLoadingIndicator isLoading={isNavigating} />
 
-<Notifications />
+<Notifications notification={$flash} />
 
 <form id="sign-out" class="invisible" use:enhance action="/sign-out" method="post" />
 

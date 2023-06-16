@@ -10,7 +10,12 @@ declare global {
 	namespace App {
 		// interface Error {}
 		// interface Platform {}
-		// interface PageData {}
+		interface PageData {
+			flash?: {
+				description: string;
+				kind: import('$lib/components/Notifications/notificationStore').NotificationKind;
+			};
+		}
 		interface Locals {
 			currentUser?: Pick<
 				import('@prisma/client').User,

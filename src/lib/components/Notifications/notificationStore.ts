@@ -5,20 +5,20 @@ export type NotificationKind = 'info' | 'success' | 'warning' | 'error';
 export type Notification = {
 	id: string;
 	description: string;
-	kind?: NotificationKind;
+	kind: NotificationKind;
 	removeAfter?: number;
 };
 
 function createNotificationStore() {
 	const { subscribe, update } = writable<Notification[]>([]);
 
-	function delete_notification(id: string) {
+	function close(id: string) {
 		update((all) => all.filter((toast) => toast.id !== id));
 	}
 
 	return {
 		subscribe,
-		close: delete_notification,
+		close,
 		push(data: Omit<Notification, 'id'>) {
 			const id = new Date().valueOf() + data.description;
 			const newNotification: Notification = {
@@ -32,7 +32,7 @@ function createNotificationStore() {
 
 			if (data.removeAfter !== undefined) {
 				setTimeout(() => {
-					delete_notification(id);
+					close(id);
 				}, data.removeAfter);
 			}
 

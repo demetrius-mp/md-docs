@@ -69,6 +69,11 @@ export const actions = {
 			maxAge: 60 * 60 * 24,
 		});
 
+		const redirectTo = event.url.searchParams.get('redirectTo');
+		if (redirectTo) {
+			throw redirect(302, `/${redirectTo.slice(1)}`);
+		}
+
 		throw redirect(302, '/app');
 	},
 } satisfies Actions;
