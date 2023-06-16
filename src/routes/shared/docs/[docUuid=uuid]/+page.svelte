@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
+	import MarkdownContent from '$lib/components/Site/MarkdownContent.svelte';
 
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import Container from '$lib/components/Container.svelte';

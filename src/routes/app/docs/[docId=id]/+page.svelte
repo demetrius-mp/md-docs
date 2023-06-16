@@ -2,9 +2,9 @@
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import Container from '$lib/components/Container.svelte';
 
-	import DocHeader from '$lib/components/DocHeader.svelte';
-	import MarkdownContent from '$lib/components/MarkdownContent.svelte';
-	import SaveDocButton from '$lib/components/SaveDocButton.svelte';
+	import DocHeader from '$lib/components/Site/DocHeader.svelte';
+	import MarkdownContent from '$lib/components/Site/MarkdownContent.svelte';
+	import SaveDocButton from '$lib/components/Site/SaveDocButton.svelte';
 	import { parseMarkdown } from '$lib/parseMarkdown.js';
 	import { currentDocStore } from '$lib/stores/currentDocStore.js';
 	import type { Instance } from 'ink-mde';
